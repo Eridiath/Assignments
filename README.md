@@ -32,3 +32,7 @@ Now you're ready to go!
 Open the `README.md` file inside each assignment and follow the instructions.
 
 > **Note**: Remember that all commands inside the Readme files assume you are in the root of the project.
+
+[![Python package](https://github.com/Eridiath/Assignments/actions/workflows/python-package.yml/badge.svg)](https://github.com/Eridiath/Assignments/actions/workflows/python-package.yml)
+
+Thank you for checking my readme file from the assignments in the FAAST program, for any questions feel free to contact me.
