@@ -11,7 +11,7 @@ def clean_data(region_code:str):
     file, you may also pass in a region code to obtain information on that
     region, the default is PT.
     """
-    data_to_clean = pd.read_csv('/nfs/workstation/sb_tom_004/tom_ads/foundations_repo/assignments/life_expectancy/data/eu_life_expectancy_raw.tsv',
+    data_to_clean = pd.read_csv('./life_expectancy/data/eu_life_expectancy_raw.tsv',
                                 sep='\t|,', engine='python',header=0)
     data_to_clean = data_to_clean.rename(columns={data_to_clean.columns[3]: "region"})
     data_to_clean = pd.melt(data_to_clean,id_vars=['unit','sex','age',"region"],var_name='year')
@@ -20,7 +20,7 @@ def clean_data(region_code:str):
                                            errors='coerce')
     cleaned_data = data_to_clean.dropna()
     pt_data = cleaned_data[cleaned_data['region'] == region_code]
-    pt_data.to_csv('/nfs/workstation/sb_tom_004/tom_ads/foundations_repo/assignments/life_expectancy/data/pt_life_expectancy.csv',
+    pt_data.to_csv('./life_expectancy/data/pt_life_expectancy.csv',
                    index=False)
 
 if __name__ == "__main__": # pragma: no cover
