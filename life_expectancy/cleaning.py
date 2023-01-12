@@ -16,7 +16,7 @@ def load_data():
     return data_to_clean
 
 def clean_data(data_to_clean:DataFrame, region_code:str):
-    """This function receives data from the original .tsv file and cleans it for further 
+    """This function receives data from the original .tsv file and cleans it for further
     usage.
     params:
         data_to_clean: pandas Dataframe - This is the data obtained from the .tsv file
