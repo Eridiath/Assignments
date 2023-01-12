@@ -44,23 +44,25 @@ def save_data(data_to_save: DataFrame):
     data_to_save.to_csv('./life_expectancy/data/pt_life_expectancy.csv',
                    index=False)
 
-def main(region_code: str):
-    """This is the main function in this script, it runs all other functions in sequence
-    and receives the region code to feed those functions.
+# def main(region_code: str):
+#     """This is the main function in this script, it runs all other functions in sequence
+#     and receives the region code to feed those functions.
 
-    Args:
-        region_code (str): This is the country code for selecting the information
-            wanted for usage. ex: PT for Portugal
-    """
-    # print(region_code)
-    # input("Press Enter to continue")
-    data = load_data()
-    cleaned_data = clean_data(region_code, data)
-    save_data(cleaned_data)
+#     Args:
+#         region_code (str): This is the country code for selecting the information
+#             wanted for usage. ex: PT for Portugal
+#     """
+#     # print(region_code)
+#     # input("Press Enter to continue")
+#     data = load_data()
+#     cleaned_data = clean_data(region_code, data)
+#     save_data(cleaned_data)
 
 if __name__ == "__main__": # pragma: no cover
     parser = argparse.ArgumentParser()
     parser.add_argument("--region", help="The region code you wish to use in clean_data",
                         default='PT',required=False)
     args = parser.parse_args()
-    main(args.region)
+    data = load_data()
+    cleaned_data = clean_data(args.region, data)
+    save_data(cleaned_data)
