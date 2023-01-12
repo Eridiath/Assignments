@@ -55,7 +55,7 @@ def main(region_code: str):
     # print(region_code)
     # input("Press Enter to continue")
     data = load_data()
-    cleaned_data = clean_data(region_code=region_code,data_to_clean=data)
+    cleaned_data = clean_data(region_code, data)
     save_data(cleaned_data)
 
 if __name__ == "__main__": # pragma: no cover
