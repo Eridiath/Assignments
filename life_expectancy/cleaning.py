@@ -15,7 +15,7 @@ def load_data():
                                 sep='\t|,', engine='python',header=0)
     return data_to_clean
 
-def clean_data(data_to_clean:DataFrame, region_code:str):
+def clean_data(region_code:str, data_to_clean:DataFrame):
     """This function receives data from the original .tsv file and cleans it for further
     usage.
     params:
@@ -52,10 +52,10 @@ def main(region_code: str):
         region_code (str): This is the country code for selecting the information
             wanted for usage. ex: PT for Portugal
     """
-
+    # print(region_code)
+    # input("Press Enter to continue")
     data = load_data()
-    input("Press Enter to continue")
-    cleaned_data = clean_data(data_to_clean=data,region_code=region_code)
+    cleaned_data = clean_data(region_code=region_code,data_to_clean=data)
     save_data(cleaned_data)
 
 if __name__ == "__main__": # pragma: no cover
