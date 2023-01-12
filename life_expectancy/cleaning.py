@@ -54,11 +54,13 @@ def main(region_code: str):
     """
 
     data = load_data()
+    input("Press Enter to continue")
     cleaned_data = clean_data(data_to_clean=data,region_code=region_code)
     save_data(cleaned_data)
 
 if __name__ == "__main__": # pragma: no cover
     parser = argparse.ArgumentParser()
-    parser.add_argument("region", help="The region code you wish to use in clean_data",default='PT')
+    parser.add_argument("--region", help="The region code you wish to use in clean_data",
+                        default='PT',required=False)
     args = parser.parse_args()
     main(args.region)
