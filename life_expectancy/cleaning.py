@@ -43,7 +43,8 @@ def save_data(data_to_save: DataFrame):
         data_to_save (DataFrame): This is the data to save, it should already have been
             cleaned prior to saving.
     """
-    data_to_save.to_csv('./life_expectancy/data/pt_life_expectancy.csv',
+    file_path = Path(__file__).parent / "data/pt_life_expectancy.csv"
+    data_to_save.to_csv(file_path,
                    index=False)
 
 def main(region_code: str):
