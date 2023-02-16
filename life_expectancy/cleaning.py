@@ -3,6 +3,7 @@
     folder.
     """
 import argparse
+from pathlib import Path
 import pandas as pd
 from pandas import DataFrame
 
@@ -11,7 +12,8 @@ def load_data():
     and returns the data as is, for further data cleaning please use the clean_data
     method.
     """
-    data_to_clean = pd.read_csv('./life_expectancy/data/eu_life_expectancy_raw.tsv',
+    file_path = Path(__file__).parent / "data/eu_life_expectancy_raw.tsv"
+    data_to_clean = pd.read_csv(file_path,
                                 sep='\t|,', engine='python',header=0)
     return data_to_clean
 
