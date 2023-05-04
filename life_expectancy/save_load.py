@@ -10,6 +10,8 @@ def load_data():
     """This function loads data from the main .tsv file. It loads all the available data
     and returns the data as is, for further data cleaning please use the clean_data
     method.
+    return data_to_clean - Pandas Dataframe: Dataframe obtained from loading the complete 
+        data file.
     """
     file_path = Path(__file__).parent / "data/eu_life_expectancy_raw.tsv"
     data_to_clean = pd.read_csv(file_path,

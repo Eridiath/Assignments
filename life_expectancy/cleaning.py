@@ -14,6 +14,8 @@ def clean_data(region_code:str, data_to_clean:DataFrame):
             uncleaned and containing information from all regions and subjects.
         region_code: string - This is the country code for selecting the information
             wanted for usage. ex: PT for Portugal
+    return: data: Pandas Datafrane - final dataframe containing the clean data from the
+        origin and only containing data from the region selected
     """
 
     data_to_clean = data_to_clean.rename(columns={data_to_clean.columns[3]: "region"})
