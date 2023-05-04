@@ -1,21 +1,10 @@
 """Module cleaning, used to select a country and obtain clean data from
-    the .tsv file in the data folder and then save the result in the same
-    folder.
+    the .tsv file in the data folder.
     """
 import argparse
-from pathlib import Path
 import pandas as pd
 from pandas import DataFrame
-
-def load_data():
-    """This function loads data from the main .tsv file. It loads all the available data
-    and returns the data as is, for further data cleaning please use the clean_data
-    method.
-    """
-    file_path = Path(__file__).parent / "data/eu_life_expectancy_raw.tsv"
-    data_to_clean = pd.read_csv(file_path,
-                                sep='\t|,', engine='python',header=0)
-    return data_to_clean
+from life_expectancy.save_load import save_data, load_data
 
 def clean_data(region_code:str, data_to_clean:DataFrame):
     """This function receives data from the original .tsv file and cleans it for further
@@ -25,6 +14,8 @@ def clean_data(region_code:str, data_to_clean:DataFrame):
             uncleaned and containing information from all regions and subjects.
         region_code: string - This is the country code for selecting the information
             wanted for usage. ex: PT for Portugal
+    return: data: Pandas Datafrane - final dataframe containing the clean data from the
+        origin and only containing data from the region selected
     """
 
     data_to_clean = data_to_clean.rename(columns={data_to_clean.columns[3]: "region"})
@@ -35,17 +26,6 @@ def clean_data(region_code:str, data_to_clean:DataFrame):
     cleaned_data = data_to_clean.dropna()
     data = cleaned_data[cleaned_data['region'] == region_code]
     return data
-
-def save_data(data_to_save: DataFrame):
-    """This functions saves data to the pt_life_expectancy.csv file in the data folder.
-
-    Args:
-        data_to_save (DataFrame): This is the data to save, it should already have been
-            cleaned prior to saving.
-    """
-    file_path = Path(__file__).parent / "data/pt_life_expectancy.csv"
-    data_to_save.to_csv(file_path,
-                   index=False)
 
 def main(region_code: str):
     """This is the main function in this script, it runs all other functions in sequence

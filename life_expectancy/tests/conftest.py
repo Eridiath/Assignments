@@ -2,20 +2,18 @@
 import pandas as pd
 import pytest
 
-from . import FIXTURES_DIR, OUTPUT_DIR
+from .fixtures.mock import raw_data, expect_data
+from . import FIXTURES_DIR
 
+@pytest.fixture()
+def goal_data_fixture():
+    """Fixture with the goal of cleaning the raw_data()"""
+    return pd.DataFrame(expect_data())
 
-@pytest.fixture(autouse=True)
-def run_before_and_after_tests() -> None:
-    """Fixture to execute commands before and after a test is run"""
-    # Setup: fill with any logic you want
-
-    yield # this is where the testing happens
-
-    # Teardown : fill with any logic you want
-    file_path = OUTPUT_DIR / "pt_life_expectancy.csv"
-    file_path.unlink(missing_ok=True)
-
+@pytest.fixture()
+def source_data_fixture():
+    """Fixture with the raw data defined in the mock file"""
+    return pd.DataFrame(raw_data())
 
 @pytest.fixture(scope="session")
 def pt_life_expectancy_expected() -> pd.DataFrame:
