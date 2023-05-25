@@ -1,3 +1,5 @@
+from pathlib import Path
+
 """File to store and generate mock datasets
     Inspired by the work of Gabriela Sá Martins.
     """
@@ -37,3 +39,36 @@ def expect_data() -> dict:
         'value': [80.2, 78.5, 83.3]
     }
     return data
+
+def json_data() -> dict:
+    """Function used to retrieve mock raw data
+
+    Returns:
+        dict: Dictionary containing the data
+    """
+    
+    data = {
+        'unit': ['YR', 'YR', 'YR'],
+        'sex': ['F', 'F', 'F'],
+        'age': ['Y1', 'Y1', 'Y1'],
+        'geo\time': ['PT', 'PT', 'PT'],
+        'year': [2021, 2020, 2019],
+        'life_expectancy': [80.2, 78.5, 83.3]
+    }
+    return data
+
+def json_filepath() -> Path:
+    """
+    Function used to define a file path to the json
+    file."""
+
+    filepath = Path(__file__).parent.parent / 'data/eurostat_life_expect.zip'
+    return filepath
+
+def tsv_filepath() -> Path:
+    """
+    Function used to define a file path to the tsv
+    file."""
+    
+    filepath = Path(__file__).parent.parent / 'data' / 'pt_life_expectancy.csv'
+    return filepath
