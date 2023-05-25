@@ -25,7 +25,7 @@ def test_load_data_JSON(read_table_mock: Mock, source_json_filepath):
     test_instance.load_data(filepath=source_json_filepath)
     read_table_mock.assert_called_once()
 
-@patch('life_expectancy.save.pd.DataFrame.to_csv')
+@patch('life_expectancy.save.DataFrame.to_csv')
 def test_save_data(save_table_mock: Mock,goal_data_fixture):
     """Testing the save_data function, this function runs to_csv to save
     the Dataframe containing the cleaned data, this is a native function
