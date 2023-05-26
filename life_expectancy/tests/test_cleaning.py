@@ -35,12 +35,12 @@ def test_save_data(save_table_mock: Mock,goal_data_fixture):
 
 def test_clean_data_tsv_function(source_data_fixture, goal_data_fixture):
     """This function tests the main function of the assignment"""
-    results = clean_data_tsv('PT',source_data_fixture).reset_index(drop=True)
+    results = clean_data_tsv('PORTUGAL',source_data_fixture).reset_index(drop=True)
     pd.testing.assert_frame_equal(results,goal_data_fixture)
 
 def test_clean_data_json_function(source_json_data_fixture, goal_data_fixture):
     """This function tests the main function of the assignment"""
-    results = clean_data_json('PT',source_json_data_fixture)
+    results = clean_data_json('PORTUGAL',source_json_data_fixture)
     pd.testing.assert_frame_equal(results,goal_data_fixture)
     
 def test_enum():

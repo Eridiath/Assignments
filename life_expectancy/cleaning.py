@@ -13,7 +13,7 @@ from life_expectancy.regions import Country
 
 CleaningStrategy = Callable[[Country, DataFrame], DataFrame]
 
-def clean_data_json(region_code:Country, data_to_clean:DataFrame):
+def clean_data_json(region_code:Country, data_to_clean:DataFrame) -> DataFrame:
     """This function receives data from the original .json file and cleans it for further
     usage.
     params:
@@ -32,7 +32,7 @@ def clean_data_json(region_code:Country, data_to_clean:DataFrame):
     data = cleaned_data[cleaned_data['region'] == str(region_code)]
     return data
 
-def clean_data_tsv(region_code:Country, data_to_clean:DataFrame):
+def clean_data_tsv(region_code:Country, data_to_clean:DataFrame) -> DataFrame:
     """This function receives data from the original .tsv file and cleans it for further
     usage.
     params:
@@ -50,7 +50,7 @@ def clean_data_tsv(region_code:Country, data_to_clean:DataFrame):
                                                errors='coerce')
 
     cleaned_data = data_to_clean.dropna()
-    data = cleaned_data[cleaned_data['region'] == str(region_code)]
+    data = cleaned_data[cleaned_data['region'] == region_code.name]
     return data
 
 @dataclass
@@ -71,7 +71,8 @@ class Pipeline:
         region = Country(region_code)
         data = self.loader.load_data(filepath=self.filepath)
         cleaned_data = self.cleaner(region, data)
-        save_data(cleaned_data)
+        file_path = pathlib.Path(__file__).parent / "data" / f"{region_code}_life_expectancy.csv"
+        save_data(cleaned_data,filepath=file_path)
         return cleaned_data
 
 def main(filename: str, region_code: str):

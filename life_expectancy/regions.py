@@ -55,8 +55,7 @@ class Country(Enum):
 
     @classmethod
     def get_list(cls):
-        """This function is used to return the entire country code list
-        for debugging purposes."""
+        """This function is used to return the entire country code list"""
         return [x.value for x in cls]
 
     def __str__(self):
