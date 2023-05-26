@@ -26,21 +26,21 @@ def test_load_data_JSON(read_table_mock: Mock, source_json_filepath):
     read_table_mock.assert_called_once()
 
 @patch('life_expectancy.save.DataFrame.to_csv')
-def test_save_data(save_table_mock: Mock,goal_data_fixture):
+def test_save_data(save_table_mock: Mock,goal_data_fixture, goal_data_filepath):
     """Testing the save_data function, this function runs to_csv to save
     the Dataframe containing the cleaned data, this is a native function
     and so we trust it works and only need to verify it is indeed called"""
-    save_data(goal_data_fixture)
+    save_data(goal_data_fixture,filepath=goal_data_filepath)
     save_table_mock.assert_called_once()
 
 def test_clean_data_tsv_function(source_data_fixture, goal_data_fixture):
     """This function tests the main function of the assignment"""
-    results = clean_data_tsv('PORTUGAL',source_data_fixture).reset_index(drop=True)
+    results = clean_data_tsv(Country.PT,source_data_fixture).reset_index(drop=True)
     pd.testing.assert_frame_equal(results,goal_data_fixture)
 
 def test_clean_data_json_function(source_json_data_fixture, goal_data_fixture):
     """This function tests the main function of the assignment"""
-    results = clean_data_json('PORTUGAL',source_json_data_fixture)
+    results = clean_data_json(Country.PT,source_json_data_fixture)
     pd.testing.assert_frame_equal(results,goal_data_fixture)
     
 def test_enum():

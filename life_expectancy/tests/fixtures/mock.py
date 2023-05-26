@@ -72,3 +72,10 @@ def tsv_filepath() -> Path:
     
     filepath = Path(__file__).parent.parent / 'data' / 'pt_life_expectancy.csv'
     return filepath
+
+def goal_filepath() -> Path:
+    """
+    Function used to define a file path to the saved file"""
+    
+    filepath = Path(__file__).parent.parent / 'data' / 'pt_life_expectancy.csv'
+    return filepath
